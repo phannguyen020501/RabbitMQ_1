@@ -1,4 +1,4 @@
-package com.pn;
+package com.pn.amqp;
 
 import com.rabbitmq.client.*;
 
@@ -13,6 +13,11 @@ public class Consumer {
         System.out.println("create a ConnectionFactory");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
+
+//        factory.setHost("192.168.6.162");
+//        factory.setPort(5672);
+//        factory.setUsername("vsat");
+//        factory.setPassword("vsat@2021");
 
         System.out.println("create a connection");
         System.out.println("create a channel");
@@ -42,7 +47,6 @@ public class Consumer {
         queue bị cancel
          */
         System.out.println("consumerTag: " + consumerTag);
-
 
     }
 }

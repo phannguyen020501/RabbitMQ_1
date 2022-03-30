@@ -1,4 +1,4 @@
-package com.pn;
+package com.pn.amqp;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -18,6 +18,10 @@ public class Producer {
         ConnectionFactory factory = new ConnectionFactory();
 
         factory.setHost("localhost");
+//        factory.setHost("192.168.6.162");
+//        factory.setPort(5672);
+//        factory.setUsername("vsat");
+//        factory.setPassword("vsat@2021");
 
         System.out.println("create a connection");
         System.out.println("create a channel");
@@ -40,6 +44,8 @@ public class Producer {
                 do {
                     System.out.println("Enter message: ");
                     message = br.readLine().trim();
+                    //trim(): xóa khoảng trắng
+
                     channel.basicPublish("", QUEUE_NAME, null,
                             message.getBytes(StandardCharsets.UTF_8));
                     // gửi message lên exchange
@@ -49,7 +55,7 @@ public class Producer {
                     * basicProperties: props: các thuộc tính khác cho message
                     * byte[] body: nội dụng của tin nhắn
                     * */
-                    System.out.println("Sent: " + message+ "'");
+                    System.out.println("Sent: " + message+ " ");
 
                 }while (!message.equalsIgnoreCase("close"));
             }finally {
